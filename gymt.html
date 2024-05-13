@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone</title>
+    <link rel="stylesheet" href="gym.css">
+    <script src="gym.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Catamaran:wght@200&family=Courgette&family=Edu+TAS+Beginner:wght@700&family=Lato:wght@300;900&family=Mukta:wght@700&family=Mulish:wght@300&family=Open+Sans&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@300&family=Raleway:wght@100&family=Roboto&family=Roboto+Condensed:wght@700&family=Roboto+Slab&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+      <h1>Gym Sale Countdown</h1>
+      <div id="countdown"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+<script>
+  // Function to display countdown timer for gym sale
+function gymSaleCountdown(endDate) {
+    const countdownElement = document.getElementById('countdown');
+
+    // Update the countdown every second
+    const timerInterval = setInterval(() => {
+        const currentDate = new Date();
+        const remainingTime = endDate - currentDate;
+
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            countdownElement.textContent = 'Sale has ended!';
+        } else {
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            countdownElement.textContent = `Sale ends in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+    }, 1000);
+}
+
+// Calculate end date for the gym sale (7 days from now)
+const endDate = new Date();
+endDate.setDate(endDate.getDate() + 7);
+
+// Call the function to start the countdown
+gymSaleCountdown(endDate);
+
+</script>
+
+</html>
